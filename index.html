@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Jade-Arc | Your Ultimate Online Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+        }
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.1);
+        }
+        .feature-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        .glitch-text {
+            position: relative;
+            text-shadow: 
+                0 2px 0 #0f0,
+                -2px -2px 0 #f00,
+                2px 2px 0 #00f;
+            animation: glitch 1s infinite alternate;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+    </style>
+</head>
+<body class="text-white">
+    <div class="container mx-auto px-4 py-16">
+        <header class="text-center mb-16">
+            <h1 class="text-5xl font-bold mb-4 text-yellow-300 glitch-text">Project Jade-Arc 🚀</h1>
+            <p class="text-xl max-w-2xl mx-auto text-gray-200">
+                The Ultimate All-in-One Digital Ecosystem
+            </p>
+        </header>
+
+        <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="feature-card rounded-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-green-300">🌐 User System</h2>
+                <ul class="space-y-2">
+                    <li>✅ Advanced Signup/Login</li>
+                    <li>✅ Admin Control Panel</li>
+                    <li>✅ User Statistics</li>
+                    <li>✅ Friend Discovery</li>
+                </ul>
+            </div>
+
+            <div class="feature-card rounded-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-blue-300">💬 Chat System</h2>
+                <ul class="space-y-2">
+                    <li>✅ Public & Private Chats</li>
+                    <li>✅ Group Management</li>
+                    <li>✅ Real-time Messaging</li>
+                </ul>
+            </div>
+
+            <div class="feature-card rounded-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-purple-300">🛒 Marketplace</h2>
+                <ul class="space-y-2">
+                    <li>✅ Buy & Sell Platform</li>
+                    <li>✅ 30-Star Seller Rating</li>
+                    <li>✅ Admin Moderation</li>
+                </ul>
+            </div>
+
+            <div class="feature-card rounded-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-red-300">🌍 Community Platform</h2>
+                <ul class="space-y-2">
+                    <li>✅ Post Updates</li>
+                    <li>✅ Like/Dislike/Comment</li>
+                    <li>✅ Selective Posting Privileges</li>
+                </ul>
+            </div>
+
+            <div class="feature-card rounded-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-indigo-300">🎮 Game Hosting</h2>
+                <ul class="space-y-2">
+                    <li>✅ In-Browser Gaming</li>
+                    <li>✅ Built-in Ad Blocker</li>
+                    <li>✅ Seamless Experience</li>
+                </ul>
+            </div>
+
+            <div class="feature-card rounded-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-pink-300">💻 Tech Stack</h2>
+                <ul class="space-y-2">
+                    <li>✅ HTML, CSS, JavaScript</li>
+                    <li>✅ Python Backend</li>
+                    <li>✅ Modern Frameworks</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="text-center mt-16">
+            <a id="discordLink" href="admin.html" 
+               class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full text-xl transition duration-300 transform hover:scale-105 inline-block">
+                Join Our Discord
+            </a>
+        </div>
+
+        <footer class="text-center mt-16 text-gray-300">
+            <p>© 2024 Project Jade-Arc. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Easter egg for admin access
+        let adminCode = '';
+        const secretCode = 'openadmin';
+
+        document.addEventListener('keydown', (e) => {
+            adminCode += e.key.toLowerCase();
+            
+            if (adminCode.includes(secretCode)) {
+                window.location.href = 'admin.html';
+                adminCode = '';
+            }
+
+            // Reset code if it gets too long
+            if (adminCode.length > 20) {
+                adminCode = '';
+            }
+        });
+    </script>
+</body>
+</html>
