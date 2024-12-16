@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jade-Arc | Admin Portal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #000428, #004e92);
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+        }
+        .admin-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .neon-text {
+            text-shadow: 
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 40px #0ff,
+                0 0 80px #0ff,
+                0 0 90px #0ff,
+                0 0 100px #0ff,
+                0 0 150px #0ff;
+        }
+    </style>
+</head>
+<body class="text-white">
+    <div class="container mx-auto px-4 py-16">
+        <header class="text-center mb-16">
+            <h1 class="text-5xl font-bold mb-4 text-green-300 neon-text">Admin Portal</h1>
+        </header>
+
+        <div id="loginSection" class="max-w-md mx-auto admin-card p-8 rounded-lg">
+            <h2 class="text-2xl font-bold mb-6 text-center">Secret Access Required</h2>
+            <form id="adminLoginForm" class="space-y-4">
+                <input type="text" id="usernameInput" placeholder="Username" 
+                       class="w-full p-3 bg-black bg-opacity-50 rounded-lg">
+                <input type="password" id="passwordInput" placeholder="Password" 
+                       class="w-full p-3 bg-black bg-opacity-50 rounded-lg">
+                <button type="submit" 
+                        class="w-full bg-green-600 hover:bg-green-700 p-3 rounded-lg transition duration-300">
+                    Access Portal
+                </button>
+            </form>
+        </div>
+
+        <div id="dashboardSection" class="hidden">
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="admin-card p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4">Visitor Metrics</h3>
+                    <div id="visitorCount" class="text-3xl font-bold text-blue-300">0</div>
+                </div>
+                <div class="admin-card p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4">Unique IPs</h3>
+                    <div id="uniqueIPs" class="text-3xl font-bold text-purple-300">0</div>
+                </div>
+                <div class="admin-card p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4">Total Site Time</h3>
+                    <div id="totalSiteTime" class="text-3xl font-bold text-green-300">0 mins</div>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <h2 class="text-2xl font-bold mb-4 text-yellow-300">Discord Link Analytics</h2>
+                <div class="admin-card p-6 rounded-lg">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-gray-700">
+                                <th class="p-3 text-left">IP Address</th>
+                                <th class="p-3 text-left">Timestamp</th>
+                                <th class="p-3 text-left">Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody id="discordClicksTable">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('adminLoginForm');
+        const loginSection = document.getElementById('loginSection');
+        const dashboardSection = document.getElementById('dashboardSection');
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('usernameInput').value;
+            const password = document.getElementById('passwordInput').value;
+
+            // Check credentials (use the ones from original requirements)
+            if (username === 'r2trappy' && password === 'XEB&45jki') {
+                loginSection.classList.add('hidden');
+                dashboardSection.classList.remove('hidden');
+                initializeDashboard();
+            } else {
+                alert('Access Denied. Incorrect Credentials.');
+            }
+        });
+
+        function initializeDashboard() {
+            // Simulated tracking data
+            const visitorTracker = {
+                visits: Math.floor(Math.random() * 1000),
+                uniqueIPs: new Set(['192.168.1.1', '10.0.0.1', '172.16.0.1']),
+                siteTime: Math.floor(Math.random() * 1000),
+                discordClicks: [
+                    {
+                        ip: '192.168.1.1',
+                        timestamp: new Date().toLocaleString(),
+                        duration: '45 mins'
+                    }
+                ]
+            };
+
+            // Update dashboard
+            document.getElementById('visitorCount').textContent = visitorTracker.visits;
+            document.getElementById('uniqueIPs').textContent = visitorTracker.uniqueIPs.size;
+            document.getElementById('totalSiteTime').textContent = visitorTracker.siteTime + ' mins';
+
+            // Populate Discord clicks table
+            const tableBody = document.getElementById('discordClicksTable');
+            visitorTracker.discordClicks.forEach(click => {
+                const row = `
+                    <tr class="border-b border-gray-700">
+                        <td class="p-3">${click.ip}</td>
+                        <td class="p-3">${click.timestamp}</td>
+                        <td class="p-3">${click.duration}</td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+    </script>
+</body>
+</html>
